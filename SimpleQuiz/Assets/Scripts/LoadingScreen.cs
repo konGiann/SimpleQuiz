@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Button LoadGameButton;
+
+    private void Awake()
     {
-        StartCoroutine(LoadGame());
+        LoadGameButton.gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(ShowButton());
     }
 
     // Update is called once per frame
@@ -20,10 +27,14 @@ public class LoadingScreen : MonoBehaviour
         }
     }
 
-    IEnumerator LoadGame()
+    public void LoadGame()
+    {        
+        SceneManager.LoadScene(1);        
+    }
+
+    IEnumerator ShowButton()
     {
-        yield return new WaitForSeconds(9.5f);
-        SceneManager.LoadScene(1);
-        Debug.Log("Loaded");
+        yield return new WaitForSeconds(10f);
+        LoadGameButton.gameObject.SetActive(true);
     }
 }
