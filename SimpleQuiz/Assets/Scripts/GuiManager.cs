@@ -12,6 +12,7 @@ public class GuiManager : MonoBehaviour
     public Text CorrectAnswersScore;
     public Text TotalAnswersScore;
     public Text TopScore;
+    public Text TimeText;
 
     public Button[] Answers;   
 

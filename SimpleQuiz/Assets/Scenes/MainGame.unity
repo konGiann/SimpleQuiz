@@ -442,6 +442,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273247111}
   m_CullTransparentMesh: 0
+--- !u!1 &284948741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 284948742}
+  - component: {fileID: 284948744}
+  - component: {fileID: 284948743}
+  m_Layer: 5
+  m_Name: TimeForAnswer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &284948742
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284948741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1372317164}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 554.7, y: -23.900024}
+  m_SizeDelta: {x: 216.2, y: 47.9}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &284948743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284948741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 33
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 46
+    m_Alignment: 3
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u03A3\u03BA\u03BF\u03C1\u03AC\u03BA\u03B9"
+--- !u!222 &284948744
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284948741}
+  m_CullTransparentMesh: 0
 --- !u!1 &354407600
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -108.099976, y: -23.95}
+  m_AnchoredPosition: {x: -108.09985, y: -23.949951}
   m_SizeDelta: {x: 216.19995, y: 47.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &397157440
@@ -905,12 +982,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc8eb81e8016ee458cdcfd89eb052dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeForAnswer: 0
+  TimeForAnswer: 11
+  NextQuestionDelay: 2
   ReligionQuestions:
   - Text: "\u03A3\u03B5 \u03C0\u03BF\u03B9\u03B1 \u03BC\u03B5\u03B3\u03AC\u03BB\u03B7
       \u03B3\u03B9\u03BF\u03C1\u03C4\u03AE \u03B2\u03B3\u03B1\u03AF\u03BD\u03B5\u03B9
       \u03B1\u03C0\u03CC \u03C4\u03B7 \u03C3\u03C0\u03B7\u03BB\u03B9\u03AC \u03C4\u03BF\u03C5
       \u03BF \u03A0\u03AD\u03C4\u03C1\u03BF\u03C2 \u0393\u03B1\u03CA\u03C4\u03AC\u03BD\u03BF\u03C2;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u039A\u03BF\u03AF\u03BC\u03B7\u03C3\u03B7\u03C2 \u03C4\u03B7\u03C2
         \u0398\u03B5\u03BF\u03C4\u03CC\u03BA\u03BF\u03C5"
@@ -923,6 +1002,7 @@ MonoBehaviour:
       isCorrect: 0
   - Text: "\u03A0\u03BF\u03CD \u03B2\u03C1\u03AF\u03C3\u03BA\u03B5\u03C4\u03B1\u03B9
       \u03BF \u03BD\u03B1\u03CC\u03C2 \u03C4\u03BF\u03C5 \u0394\u03AF\u03B1;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u03A3\u03C4\u03B7\u03BD \u039F\u03BB\u03C5\u03BC\u03C0\u03AF\u03B1"
       isCorrect: 1
@@ -934,6 +1014,7 @@ MonoBehaviour:
       isCorrect: 0
   - Text: "\u03A0\u03BF\u03B9\u03BF\u03C2 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BF \u03C0\u03C1\u03BF\u03C3\u03C4\u03AC\u03C4\u03B7\u03C2
       \u03C4\u03C9\u03BD \u03BF\u03B4\u03BF\u03BD\u03C4\u03BF\u03C4\u03C1\u03B9\u03AC\u03C4\u03C1\u03C9\u03BD;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u03BF \u0386\u03B3\u03B9\u03BF\u03C2 \u0391\u03BD\u03C4\u03CD\u03C0\u03B1\u03C2"
       isCorrect: 1
@@ -948,6 +1029,7 @@ MonoBehaviour:
   - Text: "\u03A0\u03BF\u03B9\u03BF\u03C2 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BF \u03C0\u03C1\u03BF\u03C3\u03C4\u03AC\u03C4\u03B7\u03C2
       \u03C4\u03C9\u03BD \u03C0\u03C4\u03B7\u03BD\u03BF\u03C4\u03C1\u03CC\u03C6\u03C9\u03BD
       \u03BA\u03B1\u03B9 \u03C4\u03C9\u03BD \u03B1\u03BC\u03C0\u03B5\u03BB\u03BF\u03C5\u03C1\u03B3\u03CE\u03BD;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u039F \u0386\u03B3\u03B9\u03BF\u03C2 \u03A3\u03B1\u03BC\u03C8\u03CE\u03BD"
       isCorrect: 0
@@ -960,6 +1042,7 @@ MonoBehaviour:
       isCorrect: 0
   - Text: "\u03A0\u03CC\u03C3\u03B1 \u03C7\u03AD\u03C1\u03B9\u03B1 \u03AD\u03C7\u03B5\u03B9
       \u03B7 \u0399\u03BD\u03B4\u03AE \u03B8\u03B5\u03AC \u039A\u03AC\u03BB\u03B9"
+    Image: {fileID: 0}
     Answers:
     - text: 45
       isCorrect: 0
@@ -970,6 +1053,7 @@ MonoBehaviour:
     - text: "\u0386\u03C0\u03B5\u03B9\u03C1\u03B1"
       isCorrect: 0
   - Text: "\u03A4\u03AF \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C4\u03BF \u03C0\u03B5\u03C4\u03C1\u03B1\u03C7\u03AE\u03BB\u03B9;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u03A8\u03AC\u03C1\u03B9"
       isCorrect: 0
@@ -980,6 +1064,7 @@ MonoBehaviour:
     - text: "\u0395\u03AF\u03B4\u03BF\u03C2 \u03B8\u03C5\u03BC\u03B9\u03B1\u03C4\u03BF\u03CD"
       isCorrect: 0
   - Text: "\u03A4\u03AF \u03B5\u03AF\u03BD\u03B1\u03B9 \u03BF \u03C0\u03BF\u03BD\u03C4\u03AF\u03C6\u03B9\u03BA\u03B1\u03C2;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u039F \u03A0\u03AC\u03C0\u03B1\u03C2"
       isCorrect: 1
@@ -993,6 +1078,7 @@ MonoBehaviour:
   - Text: "\u03A4\u03AF \u03B8\u03C1\u03AE\u03C3\u03BA\u03B5\u03C5\u03BC\u03B1 \u03AD\u03C7\u03BF\u03C5\u03BD
       \u03BF\u03B9 \u03BA\u03AC\u03C4\u03BF\u03B9\u03BA\u03BF\u03B9 \u03C4\u03B7\u03C2
       \u039C\u03AC\u03BB\u03C4\u03B1\u03C2;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u03A3\u03B1\u03C4\u03B1\u03BD\u03B9\u03C3\u03BC\u03CC"
       isCorrect: 0
@@ -1006,6 +1092,7 @@ MonoBehaviour:
       \u03BF\u03B9 \u03BC\u03BF\u03C5\u03C3\u03BF\u03C5\u03BB\u03BC\u03AC\u03BD\u03B5\u03C2
       \u03B3\u03C5\u03BD\u03B1\u03AF\u03BA\u03B5\u03C2 \u03C6\u03BF\u03C1\u03AC\u03BD\u03B5
       \u03BA\u03BD\u03B1 \u03C3\u03C4\u03B1 \u03C7\u03AD\u03C1\u03B9\u03B1 \u03C4\u03BF\u03C5\u03C2;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u038C\u03C4\u03B1\u03BD \u03AD\u03C7\u03BF\u03C5\u03BD \u03C0\u03B5\u03C1\u03AF\u03BF\u03B4\u03BF"
       isCorrect: 0
@@ -1021,6 +1108,7 @@ MonoBehaviour:
       \u03BA\u03B1\u03C4\u03AC \u03C4\u03B7 \u03B4\u03B9\u03AC\u03C1\u03BA\u03B5\u03B9\u03B1
       \u03C4\u03B7\u03C2 \u03C7\u03C1\u03B9\u03C3\u03C4\u03B9\u03B1\u03BD\u03B9\u03BA\u03AE\u03C2
       \u03BD\u03B7\u03C3\u03C4\u03B5\u03AF\u03B1\u03C2;"
+    Image: {fileID: 0}
     Answers:
     - text: "\u0393\u03BB\u03C5\u03BA\u03AC \u03BA\u03B1\u03B9 \u03BA\u03C1\u03B5\u03B1\u03C4\u03B9\u03BA\u03AC"
       isCorrect: 0
@@ -1185,6 +1273,7 @@ MonoBehaviour:
   CorrectAnswersScore: {fileID: 2054280521}
   TotalAnswersScore: {fileID: 1546277210}
   TopScore: {fileID: 273247113}
+  TimeText: {fileID: 284948743}
   Answers:
   - {fileID: 522774325}
   - {fileID: 1973123123}
@@ -1598,6 +1687,7 @@ RectTransform:
   - {fileID: 1546277209}
   - {fileID: 397157439}
   - {fileID: 273247112}
+  - {fileID: 284948742}
   m_Father: {fileID: 84901889}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

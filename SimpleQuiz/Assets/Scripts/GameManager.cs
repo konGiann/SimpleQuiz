@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Settings")]
     public int TimeForAnswer;
+    public float NextQuestionDelay;
 
     [Header("Κατηγορία: Θρησκεία")]
     public Question[] ReligionQuestions;
@@ -38,9 +40,10 @@ public class GameManager : MonoBehaviour
 
     // score
     int totalCorrectAnswers;
-    int totalsQuestions;
+    int totalQuestions;
     int highScore;
-
+    float timer;
+    
     #endregion
 
     private void Awake()
@@ -49,7 +52,7 @@ public class GameManager : MonoBehaviour
         {
             gm = GetComponent<GameManager>();
         }
-
+        timer = TimeForAnswer;
         // reset score
         PlayerPrefmanager.ResetStats();
         highScore = PlayerPrefmanager.GetHighScore();
@@ -89,6 +92,22 @@ public class GameManager : MonoBehaviour
         }                
     }
 
+    private void Update()
+    {
+        AnswerCountDown();
+    }
+
+    private void AnswerCountDown()
+    {        
+        timer -= Time.deltaTime;
+        int displayAsInt = (int)timer;
+        GuiManager.gui.TimeText.text = displayAsInt.ToString();
+        if(displayAsInt == 0)
+        {
+            LostDueToTimer();
+        }
+    }
+   
     // load the first question when the game starts
     private void Start()
     {
@@ -103,7 +122,7 @@ public class GameManager : MonoBehaviour
     {
         if(selectedQuestions.Count != 0)
         {
-            int randomIndex = Random.Range(0, selectedQuestions.Count);
+            int randomIndex = UnityEngine.Random.Range(0, selectedQuestions.Count);
             currentQuestion = selectedQuestions[randomIndex];
 
             GuiManager.gui.QuestionText.text = currentQuestion.Text;
@@ -141,17 +160,17 @@ public class GameManager : MonoBehaviour
         }
 
         // check user's answer
-        if(name == correctIndex.ToString())
+        if (name == correctIndex.ToString())
         {
             GuiManager.gui.Answers[correctIndex].GetComponent<Image>().color = Color.green;
 
             // play random effect
-            int randomIndex = Random.Range(0, SoundManager.sm.CorrectAnswers.Length);
+            int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.CorrectAnswers.Length);
 
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);
 
             totalCorrectAnswers++;
-            if(totalCorrectAnswers >= highScore)
+            if (totalCorrectAnswers >= highScore)
             {
                 highScore = totalCorrectAnswers;
                 GuiManager.gui.TopScore.text = highScore.ToString();
@@ -166,16 +185,36 @@ public class GameManager : MonoBehaviour
             GuiManager.gui.Answers[int.Parse(name)].GetComponent<Image>().color = Color.red;
 
             // play random effect
-            int randomIndex = Random.Range(0, SoundManager.sm.WrongAnswers.Length);
+            int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.WrongAnswers.Length);
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
         }
-        totalsQuestions++;
+        totalQuestions++;
+        
+        UpdateGUIScore();
 
-        // update score in GUI
+        StartCoroutine(GotoNextQuestionWithDelay(NextQuestionDelay));
+    }
+
+    // send score values to gui
+    private void UpdateGUIScore()
+    {
         GuiManager.gui.CorrectAnswersScore.text = totalCorrectAnswers.ToString();
-        GuiManager.gui.TotalAnswersScore.text = "/" + totalsQuestions.ToString();
+        GuiManager.gui.TotalAnswersScore.text = "/" + totalQuestions.ToString();
+    }
 
-        StartCoroutine(GotoNextQuestion());
+    // call this when timer is off
+    // load next question whithout any delay
+    // update score and reset timer
+    private void LostDueToTimer()
+    {
+        timer = TimeForAnswer;
+        selectedQuestions.Remove(currentQuestion);
+        int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.WrongAnswers.Length);
+        SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
+        GuiManager.gui.ResetButtonColors();
+        totalQuestions++;
+        UpdateGUIScore();
+        SelectRandomQuestion();
     }
 
     // Remove the current question from the question list
@@ -183,7 +222,7 @@ public class GameManager : MonoBehaviour
     // wait for seconds for the user to see the results
     // reset buttons' colors back to normal
     // finally, load the next question
-    IEnumerator GotoNextQuestion()
+    IEnumerator GotoNextQuestionWithDelay(float delay)
     {
         selectedQuestions.Remove(currentQuestion);
 
@@ -192,7 +231,7 @@ public class GameManager : MonoBehaviour
             button.interactable = false;
         }        
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(delay);
         GuiManager.gui.ResetButtonColors();
         SelectRandomQuestion();
     }
