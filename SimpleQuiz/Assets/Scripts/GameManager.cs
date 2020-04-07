@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
-    // Inspector properties
+    #region Inspector properties
 
     [Header("Game Settings")]
     public int TimeForAnswer;
@@ -29,9 +29,10 @@ public class GameManager : MonoBehaviour
     [Header("Κατηγορία: COVID-19")]
     public Question[] CovidQuestions;
 
+    #endregion
 
     #region private fields
-    
+
     // we will copy to this list the chosen by the user category questions
     List<Question> selectedQuestions;
 
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     int totalCorrectAnswers;
     int totalQuestions;
     int highScore;
+    
     float timer;
     
     #endregion
@@ -52,14 +54,22 @@ public class GameManager : MonoBehaviour
         {
             gm = GetComponent<GameManager>();
         }
+
+        // set initial timer
         timer = TimeForAnswer;
-        // reset score
+
+        // reset score and set highscore
         PlayerPrefmanager.ResetStats();
         highScore = PlayerPrefmanager.GetHighScore();
+        
+        CheckCategoryOfQuestions();
+    }
 
-        // Check which category is selected from MenuManager
-        // and copy from our predifined questions arrays in the inspector
-        // to a new list, so we can keep track which questions have already been answered
+    // Check which category is selected from MenuManager
+    // and copy from our predifined questions arrays in the inspector
+    // to a new list, so we can keep track which questions have already been answered
+    private void CheckCategoryOfQuestions()
+    {
         switch (MenuManager.menu.selectedCategory)
         {
             case "Religion":
@@ -89,7 +99,7 @@ public class GameManager : MonoBehaviour
 
             default:
                 break;
-        }                
+        }
     }
 
     private void Update()
@@ -97,6 +107,8 @@ public class GameManager : MonoBehaviour
         AnswerCountDown();
     }
 
+    // must answer in this time span
+    // else go to next question and update score
     private void AnswerCountDown()
     {        
         timer -= Time.deltaTime;
