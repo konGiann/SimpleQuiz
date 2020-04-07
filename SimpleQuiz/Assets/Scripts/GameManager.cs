@@ -43,10 +43,10 @@ public class GameManager : MonoBehaviour
     int totalCorrectAnswers;
     int totalQuestions;
     int highScore;
-    
+
     float timer;
     bool isQuestionAnswered;
-    
+
     #endregion
 
     private void Awake()
@@ -62,8 +62,13 @@ public class GameManager : MonoBehaviour
         // reset score and set highscore
         PlayerPrefmanager.ResetStats();
         highScore = PlayerPrefmanager.GetHighScore();
-        
+
         CheckCategoryOfQuestions();
+    }
+
+    private void Update()
+    {
+        AnswerCountDown();
     }
 
     // Check which category is selected from MenuManager
@@ -103,11 +108,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        AnswerCountDown();
-    }
-
     // must answer in this time span
     // else go to next question and update score
     private void AnswerCountDown()
@@ -115,15 +115,15 @@ public class GameManager : MonoBehaviour
         if (!isQuestionAnswered)
         {
             timer -= Time.deltaTime;
-        }        
+        }
         int displayAsInt = (int)timer;
         GuiManager.gui.TimeText.text = displayAsInt.ToString();
-        if(displayAsInt == 0)
-        {            
+        if (displayAsInt == 0)
+        {
             LostDueToTimer();
         }
     }
-   
+
     // load the first question when the game starts
     private void Start()
     {
@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
     // else load game over screen
     void SelectRandomQuestion()
     {
-        if(selectedQuestions.Count != 0)
+        if (selectedQuestions.Count != 0)
         {
             int randomIndex = UnityEngine.Random.Range(0, selectedQuestions.Count);
             currentQuestion = selectedQuestions[randomIndex];
@@ -146,15 +146,15 @@ public class GameManager : MonoBehaviour
             {
                 GuiManager.gui.Answers[i].GetComponentInChildren<Text>().text = currentQuestion.Answers[i].text;
                 GuiManager.gui.Answers[i].interactable = true;
-            }           
+            }
         }
         else
         {
             // load game over screen
             SceneManager.LoadScene(3);
-        }        
+        }
     }
-    
+
     // check if the button pressed contains the correct answer
     // change the buttons' colors (red for wrong, green for correct answer) based on the result
     // play a random sound effect
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
             // play random effect
             int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.CorrectAnswers.Length);
 
-            SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);            
+            SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);
 
             totalCorrectAnswers++;
             if (totalCorrectAnswers >= highScore)
@@ -197,7 +197,7 @@ public class GameManager : MonoBehaviour
         } // correct
 
         else
-        {            
+        {
             GuiManager.gui.Answers[int.Parse(name)].GetComponent<Image>().color = Color.red;
 
             // play random effect
@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
         } // wrong
         totalQuestions++;
-        
+
         UpdateGUIScore();
 
         StartCoroutine(GotoNextQuestionWithDelay(NextQuestionDelay));
@@ -246,7 +246,7 @@ public class GameManager : MonoBehaviour
         foreach (var button in GuiManager.gui.Answers)
         {
             button.interactable = false;
-        }        
+        }
 
         yield return new WaitForSeconds(delay);
 
