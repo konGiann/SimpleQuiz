@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
             // play random effect
             int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.CorrectAnswers.Length);
 
-            SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);
+            SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);            
 
             totalCorrectAnswers++;
             if (totalCorrectAnswers >= highScore)
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
         }
 
         else
-        {
+        {            
             GuiManager.gui.Answers[int.Parse(name)].GetComponent<Image>().color = Color.red;
 
             // play random effect
@@ -236,6 +236,7 @@ public class GameManager : MonoBehaviour
     // finally, load the next question
     IEnumerator GotoNextQuestionWithDelay(float delay)
     {
+        GuiManager.gui.TimeText.text = "---";
         selectedQuestions.Remove(currentQuestion);
 
         foreach (var button in GuiManager.gui.Answers)
@@ -244,6 +245,7 @@ public class GameManager : MonoBehaviour
         }        
 
         yield return new WaitForSeconds(delay);
+        timer = TimeForAnswer;
         GuiManager.gui.ResetButtonColors();
         SelectRandomQuestion();
     }

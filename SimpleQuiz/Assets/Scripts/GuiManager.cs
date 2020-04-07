@@ -33,7 +33,7 @@ public class GuiManager : MonoBehaviour
     {
         foreach (var button in Answers)
         {
-            button.GetComponent<Image>().color = new Color32(255, 172, 174, 255);
+            button.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
         }
     }
 }
