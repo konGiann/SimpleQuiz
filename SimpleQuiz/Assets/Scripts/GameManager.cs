@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     int highScore;
     
     float timer;
+    bool isQuestionAnswered;
     
     #endregion
 
@@ -110,12 +111,15 @@ public class GameManager : MonoBehaviour
     // must answer in this time span
     // else go to next question and update score
     private void AnswerCountDown()
-    {        
-        timer -= Time.deltaTime;
+    {
+        if (!isQuestionAnswered)
+        {
+            timer -= Time.deltaTime;
+        }        
         int displayAsInt = (int)timer;
         GuiManager.gui.TimeText.text = displayAsInt.ToString();
         if(displayAsInt == 0)
-        {
+        {            
             LostDueToTimer();
         }
     }
@@ -190,7 +194,7 @@ public class GameManager : MonoBehaviour
             }
 
             PlayerPrefmanager.SetScore(totalCorrectAnswers);
-        }
+        } // correct
 
         else
         {            
@@ -199,7 +203,7 @@ public class GameManager : MonoBehaviour
             // play random effect
             int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.WrongAnswers.Length);
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
-        }
+        } // wrong
         totalQuestions++;
         
         UpdateGUIScore();
@@ -236,7 +240,7 @@ public class GameManager : MonoBehaviour
     // finally, load the next question
     IEnumerator GotoNextQuestionWithDelay(float delay)
     {
-        GuiManager.gui.TimeText.text = "---";
+        isQuestionAnswered = true;
         selectedQuestions.Remove(currentQuestion);
 
         foreach (var button in GuiManager.gui.Answers)
@@ -245,6 +249,8 @@ public class GameManager : MonoBehaviour
         }        
 
         yield return new WaitForSeconds(delay);
+
+        isQuestionAnswered = false;
         timer = TimeForAnswer;
         GuiManager.gui.ResetButtonColors();
         SelectRandomQuestion();
