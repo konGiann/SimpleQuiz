@@ -533,25 +533,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a274c0820be819b4583aa92314415393, type: 3}
-    m_FontSize: 33
+    m_FontSize: 82
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 46
-    m_Alignment: 3
+    m_MaxSize: 82
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u03A7\u03C1\u03CC\u03BD\u03BF\u03C2"
+  m_Text: 10
 --- !u!222 &284948744
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1167,6 +1167,10 @@ MonoBehaviour:
   CultureQuestions: []
   NatureQuestions: []
   CovidQuestions: []
+  ReligionImage: {fileID: 21300000, guid: 3b92f64c562ab6e4daa08a63ce1333cb, type: 3}
+  CultureImage: {fileID: 0}
+  NatureImage: {fileID: 0}
+  CovidImage: {fileID: 0}
 --- !u!4 &653300572
 Transform:
   m_ObjectHideFlags: 0
@@ -1317,6 +1321,7 @@ MonoBehaviour:
   TotalAnswersScore: {fileID: 1546277210}
   TopScore: {fileID: 273247113}
   TimeText: {fileID: 284948743}
+  QuestionImage: {fileID: 2077021625}
   Answers:
   - {fileID: 522774325}
   - {fileID: 1973123123}
@@ -2277,7 +2282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 4.7, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054280521
@@ -2311,7 +2316,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: 2
 --- !u!222 &2054280522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2332,7 +2337,7 @@ GameObject:
   - component: {fileID: 2077021626}
   - component: {fileID: 2077021625}
   m_Layer: 5
-  m_Name: Image
+  m_Name: QuestionImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

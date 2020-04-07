@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
     [Header("Κατηγορία: COVID-19")]
     public Question[] CovidQuestions;
 
+    [Header("Default Εικόνες κατηγοριών")]
+    public Sprite ReligionImage;
+    public Sprite CultureImage;
+    public Sprite NatureImage;
+    public Sprite CovidImage;
+
     #endregion
 
     #region private fields
@@ -142,6 +148,16 @@ public class GameManager : MonoBehaviour
             currentQuestion = selectedQuestions[randomIndex];
 
             GuiManager.gui.QuestionText.text = currentQuestion.Text;
+
+            if(currentQuestion.Image == null)
+            {
+                GuiManager.gui.QuestionImage.sprite = ReligionImage;
+            }
+            else
+            {
+                GuiManager.gui.QuestionImage.sprite = currentQuestion.Image;
+            }
+
             for (int i = 0; i < GuiManager.gui.Answers.Length; i++)
             {
                 GuiManager.gui.Answers[i].GetComponentInChildren<Text>().text = currentQuestion.Answers[i].text;

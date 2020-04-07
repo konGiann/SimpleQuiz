@@ -8,7 +8,7 @@ public class Question {
 
     public string Text;
 
-    public Image Image;
+    public Sprite Image;
 
     public Answer[] Answers;       
 }
