@@ -154,6 +154,7 @@ MonoBehaviour:
   HighScore: {fileID: 559714323}
   HasHighscore: {fileID: 348095255}
   SuccessPercentage: {fileID: 740939369}
+  Grade: {fileID: 1329487628}
 --- !u!4 &210749211
 Transform:
   m_ObjectHideFlags: 0
@@ -1110,8 +1111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 515.8, y: 100}
+  m_AnchoredPosition: {x: 0.5, y: 0}
+  m_SizeDelta: {x: 855.2, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1329487628
 MonoBehaviour:
@@ -1126,17 +1127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509804, g: 0.24313726, b: 0.24313726, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 5
     m_MaxSize: 93
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -1144,7 +1145,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: klein mein
+  m_Text: 
 --- !u!222 &1329487629
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1406,8 +1407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 113}
-  m_SizeDelta: {x: 510.7, y: 100}
+  m_AnchoredPosition: {x: 0, y: 121}
+  m_SizeDelta: {x: 889.3, y: 112.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1501857275
 MonoBehaviour:
@@ -1427,7 +1428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2265084666788906440, guid: 88e389e8c2abfba4fa76348b4eabf684,
+  m_Sprite: {fileID: -5071565068319036441, guid: 88e389e8c2abfba4fa76348b4eabf684,
     type: 3}
   m_Type: 0
   m_PreserveAspect: 0
