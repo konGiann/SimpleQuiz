@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region private fields
+    #region fields
 
     // we will copy to this list the chosen by the user category questions
     List<Question> selectedQuestions;
@@ -46,10 +46,18 @@ public class GameManager : MonoBehaviour
     Question currentQuestion;
 
     // score
-    int totalCorrectAnswers;
-    int totalQuestions;
+    [HideInInspector]
+    public int totalCorrectAnswers;
+
+    [HideInInspector]
+    public int totalQuestions;
+
     int highScore;
 
+    [HideInInspector]
+    public bool hasNewHighscore;
+
+    // timer
     float timer;
     bool isQuestionAnswered;
 
@@ -192,7 +200,7 @@ public class GameManager : MonoBehaviour
         }
 
         // check user's answer
-        if (name == correctIndex.ToString())
+        if (name == correctIndex.ToString()) // correct
         {
             GuiManager.gui.Answers[correctIndex].GetComponent<Image>().color = Color.green;
 
@@ -202,24 +210,27 @@ public class GameManager : MonoBehaviour
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.CorrectAnswers[randomIndex]);
 
             totalCorrectAnswers++;
+
+            // check highscore
             if (totalCorrectAnswers >= highScore)
             {
+                hasNewHighscore = true;
                 highScore = totalCorrectAnswers;
                 GuiManager.gui.TopScore.text = highScore.ToString();
                 PlayerPrefmanager.SetHighScore(highScore);
             }
 
             PlayerPrefmanager.SetScore(totalCorrectAnswers);
-        } // correct
+        } 
 
-        else
+        else // wrong
         {
             GuiManager.gui.Answers[int.Parse(name)].GetComponent<Image>().color = Color.red;
 
             // play random effect
             int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.WrongAnswers.Length);
             SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
-        } // wrong
+        } 
         totalQuestions++;
 
         UpdateGUIScore();
