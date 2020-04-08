@@ -1331,6 +1331,11 @@ MonoBehaviour:
   CultureImage: {fileID: 0}
   NatureImage: {fileID: 0}
   CovidImage: {fileID: 0}
+  CultureListQuestions: {fileID: 11400000, guid: cf04db40893fa354b8a89127b88402a7,
+    type: 2}
+  totalCorrectAnswers: 0
+  totalQuestions: 0
+  hasNewHighscore: 0
 --- !u!4 &653300572
 Transform:
   m_ObjectHideFlags: 0

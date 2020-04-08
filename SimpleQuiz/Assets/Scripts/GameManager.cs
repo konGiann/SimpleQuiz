@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     public Sprite NatureImage;
     public Sprite CovidImage;
 
+    [Header("Scriptable List")]
+    public QuestionList CultureListQuestions;
+
     #endregion
 
     #region fields
@@ -101,7 +104,8 @@ public class GameManager : MonoBehaviour
             case "Culture":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = CultureQuestions.ToList();
+                    // testing scriptable
+                    selectedQuestions = CultureListQuestions.questionList.ToList();
                 }
                 break;
             case "Nature":

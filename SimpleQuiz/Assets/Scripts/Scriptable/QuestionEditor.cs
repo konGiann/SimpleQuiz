@@ -9,7 +9,7 @@ public class QuestionEditor : EditorWindow
     public QuestionList questionList;
     private int viewIndex = 1;
 
-    [MenuItem("Ερβτήσεις/Επεξεργασία Ερωτήσεων")]
+    [MenuItem("Ερωτήσεις/Επεξεργασία Ερωτήσεων")]
     static void Init()
     {
         GetWindow(typeof(QuestionEditor));
@@ -96,6 +96,10 @@ public class QuestionEditor : EditorWindow
                 DeleteItem(viewIndex - 1);
             }
 
+            // show list name
+            string relPath = AssetDatabase.GetAssetPath(questionList);
+            EditorGUILayout.LabelField("Λίστα υπό επεξεργασία: ", relPath);
+
             GUILayout.EndHorizontal();
             if (questionList.questionList == null)
                 Debug.Log("Άδεια λίστα");
@@ -104,14 +108,15 @@ public class QuestionEditor : EditorWindow
                 GUILayout.BeginHorizontal();
                 viewIndex = Mathf.Clamp(EditorGUILayout.IntField("Ερώτηση", viewIndex, GUILayout.ExpandWidth(false)), 1, questionList.questionList.Count);                
                 EditorGUILayout.LabelField("από   " + questionList.questionList.Count.ToString(), "", GUILayout.ExpandWidth(false));
+
+                
                 GUILayout.EndHorizontal();
 
                 questionList.questionList[viewIndex - 1].Text = EditorGUILayout.TextField("Κείμενο ερώτησης", questionList.questionList[viewIndex - 1].Text as string);
                 questionList.questionList[viewIndex - 1].Image= EditorGUILayout.ObjectField("Εικόνα ερώτησης", questionList.questionList[viewIndex - 1].Image, typeof(Sprite), false) as Sprite;
                 
                 GUILayout.Space(10);
-
-                //GUILayout.BeginHorizontal();
+                
                 // Answers
                 for (int i = 0; i < questionList.questionList[viewIndex - 1].Answers.Length; i++)
                 {
@@ -121,10 +126,7 @@ public class QuestionEditor : EditorWindow
                     
                 }
 
-                //GUILayout.EndHorizontal();
-
                 GUILayout.Space(10);                
-
             }
             else
             {
@@ -185,6 +187,13 @@ public class QuestionEditor : EditorWindow
 
     void DeleteItem(int index)
     {
-        questionList.questionList.RemoveAt(index);
+        if (EditorUtility.DisplayDialog("Διαγραφή ερώτησης;",
+                                       "Είσαι σίγουρος πως θέλεις να διαγράψεις την ερώτηση;",
+                                       "Ναι",
+                                       "Όχι"))
+        {
+            questionList.questionList.RemoveAt(index);
+        }
+            
     }
 }
