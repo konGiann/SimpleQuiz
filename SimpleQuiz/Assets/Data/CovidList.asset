@@ -12,4 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b803cbdabd4e0a4fbb71763f04de3a8, type: 3}
   m_Name: CovidList
   m_EditorClassIdentifier: 
-  questionList: []
+  questionList:
+  - Text: "\u03A0\u03C1\u03CE\u03C4\u03B7 \u03B1\u03C0\u03BF Covid"
+    Image: {fileID: 0}
+    Answers:
+    - text: "\u03A0\u03C1\u03CE\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u0394\u03B5\u03CD\u03C4\u03B5\u03C1\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u03A4\u03C1\u03AF\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u03A4\u03AD\u03C4\u03B1\u03C1\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+  - Text: "\u0391\u03BA\u03CC\u03BC\u03B7 \u03BC\u03B9\u03B1 covid"
+    Image: {fileID: 0}
+    Answers:
+    - text: "\u03A0\u03C1\u03CE\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u0394\u03B5\u03CD\u03C4\u03B5\u03C1\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u03A4\u03C1\u03AF\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0
+    - text: "\u03A4\u03AD\u03C4\u03B1\u03C1\u03C4\u03B7 \u03B1\u03C0\u03AC\u03BD\u03C4\u03B7\u03C3\u03B7"
+      isCorrect: 0

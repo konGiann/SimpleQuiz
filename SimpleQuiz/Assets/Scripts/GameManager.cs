@@ -17,17 +17,17 @@ public class GameManager : MonoBehaviour
     public int TimeForAnswer;
     public float NextQuestionDelay;
 
-    [Header("Κατηγορία: Θρησκεία")]
-    public Question[] ReligionQuestions;
+    //[Header("Κατηγορία: Θρησκεία")]
+    //public Question[] ReligionQuestions;
 
-    [Header("Κατηγορία: Πολιτισμός")]
-    public Question[] CultureQuestions;
+    //[Header("Κατηγορία: Πολιτισμός")]
+    //public Question[] CultureQuestions;
 
-    [Header("Κατηγορία: Φύση")]
-    public Question[] NatureQuestions;
+    //[Header("Κατηγορία: Φύση")]
+    //public Question[] NatureQuestions;
 
-    [Header("Κατηγορία: COVID-19")]
-    public Question[] CovidQuestions;
+    //[Header("Κατηγορία: COVID-19")]
+    //public Question[] CovidQuestions;
 
     [Header("Default Εικόνες κατηγοριών")]
     public Sprite ReligionImage;
@@ -35,9 +35,12 @@ public class GameManager : MonoBehaviour
     public Sprite NatureImage;
     public Sprite CovidImage;
 
-    [Header("Scriptable List")]
+    [Header("Scriptable Question Data Lists")]
+    public QuestionList ReligionListQuestions;
     public QuestionList CultureListQuestions;
-
+    public QuestionList NatureListQuestions;
+    public QuestionList CovidListQuestions;
+    
     #endregion
 
     #region fields
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour
             case "Religion":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = ReligionQuestions.ToList();
+                    selectedQuestions = ReligionListQuestions.questionList.ToList();
                 }
                 break;
             case "Culture":
@@ -111,13 +114,13 @@ public class GameManager : MonoBehaviour
             case "Nature":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = NatureQuestions.ToList();
+                    selectedQuestions = NatureListQuestions.questionList.ToList();
                 }
                 break;
             case "COVID-19":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = CovidQuestions.ToList();
+                    selectedQuestions = CovidListQuestions.questionList.ToList();
                 }
                 break;
 

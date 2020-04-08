@@ -1331,8 +1331,13 @@ MonoBehaviour:
   CultureImage: {fileID: 0}
   NatureImage: {fileID: 0}
   CovidImage: {fileID: 0}
+  ReligionListQuestions: {fileID: 11400000, guid: 5138301ea9cd4da448cec865f24a6230,
+    type: 2}
   CultureListQuestions: {fileID: 11400000, guid: cf04db40893fa354b8a89127b88402a7,
     type: 2}
+  NatureListQuestions: {fileID: 11400000, guid: e245b1da143087f4795a2282af7d3466,
+    type: 2}
+  CovidListQuestions: {fileID: 11400000, guid: 1f0941f8cfa5d30428bdc37c1b570ae7, type: 2}
   totalCorrectAnswers: 0
   totalQuestions: 0
   hasNewHighscore: 0
