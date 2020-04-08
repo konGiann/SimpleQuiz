@@ -17,29 +17,29 @@ public class DisplayStats : MonoBehaviour
 
     // Start is called before the first frame update
     void Awake()
-    {        
+    {
         FinalScore.text = PlayerPrefmanager.GetScore().ToString();
         HighScore.text = PlayerPrefmanager.GetHighScore().ToString();
         if (!GameManager.gm.hasNewHighscore)
         {
             HasHighscore.gameObject.SetActive(false);
         }
-        
+
         CalculatePercentage();
-        AssignGrade();        
-    }  
-    
+        AssignGrade();
+    }
+
     public void AssignGrade()
     {
-        if(percentage == 100)
+        if (percentage == 100)
         {
             Grade.text = "Φώστήρας!";
         }
-        else if(percentage > 75 && percentage < 100)
+        else if (percentage > 75 && percentage < 100)
         {
             Grade.text = "Όχι κι άσχημα!";
         }
-        else if (percentage > 50  && percentage <= 75 )
+        else if (percentage > 50 && percentage <= 75)
         {
             Grade.text = "Θέλεις δουλίτσα!";
         }
@@ -56,9 +56,9 @@ public class DisplayStats : MonoBehaviour
     public void CalculatePercentage()
     {
         percentage = ((float)GameManager.gm.totalCorrectAnswers / (float)GameManager.gm.totalQuestions) * 100;
-        SuccessPercentage.text = percentage.ToString() + "%";
+        SuccessPercentage.text = percentage.ToString("n2") + "%";
     }
-    
+
     public void PlayAgain()
     {
         SceneManager.LoadScene(1);
