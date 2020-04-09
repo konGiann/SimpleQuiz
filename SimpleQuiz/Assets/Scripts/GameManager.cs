@@ -11,45 +11,34 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
-    #region Inspector properties
+    #region Inspector fields
 
     [Header("Game Settings")]
-    public int TimeForAnswer;
-    public float NextQuestionDelay;
-
-    //[Header("Κατηγορία: Θρησκεία")]
-    //public Question[] ReligionQuestions;
-
-    //[Header("Κατηγορία: Πολιτισμός")]
-    //public Question[] CultureQuestions;
-
-    //[Header("Κατηγορία: Φύση")]
-    //public Question[] NatureQuestions;
-
-    //[Header("Κατηγορία: COVID-19")]
-    //public Question[] CovidQuestions;
+    public int timeForAnswer;
+    public float nextQuestionDelay;    
 
     [Header("Default Εικόνες κατηγοριών")]
-    public Sprite ReligionImage;
-    public Sprite CultureImage;
-    public Sprite NatureImage;
-    public Sprite CovidImage;
+    public Sprite religionImage;
+    public Sprite cultureImage;
+    public Sprite natureImage;
+    public Sprite covidImage;
 
     [Header("Scriptable Question Data Lists")]
-    public QuestionList ReligionListQuestions;
-    public QuestionList CultureListQuestions;
-    public QuestionList NatureListQuestions;
-    public QuestionList CovidListQuestions;
+    public QuestionList religionListQuestions;
+    public QuestionList cultureListQuestions;
+    public QuestionList natureListQuestions;
+    public QuestionList covidListQuestions;
     
     #endregion
 
     #region fields
 
     // we will copy to this list the chosen by the user category questions
-    List<Question> selectedQuestions;
+    private List<Question> selectedQuestions;
+    private Sprite defaultCategorySprite;
 
     // keep track of the current question
-    Question currentQuestion;
+    private Question currentQuestion;
 
     // score
     [HideInInspector]
@@ -58,14 +47,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int totalQuestions;
 
-    int highScore;
+    private int highScore;
 
     [HideInInspector]
     public bool hasNewHighscore;
 
     // timer
-    float timer;
-    bool isQuestionAnswered;
+    private float timer;
+    private bool isQuestionAnswered;
 
     #endregion
 
@@ -77,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
 
         // set initial timer
-        timer = TimeForAnswer;
+        timer = timeForAnswer;
 
         // reset score and set highscore
         PlayerPrefmanager.ResetStats();
@@ -101,26 +90,29 @@ public class GameManager : MonoBehaviour
             case "Religion":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = ReligionListQuestions.questionList.ToList();
+                    selectedQuestions = religionListQuestions.questionList.ToList();
+                    defaultCategorySprite = religionImage;
                 }
                 break;
             case "Culture":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
-                {
-                    // testing scriptable
-                    selectedQuestions = CultureListQuestions.questionList.ToList();
+                {                    
+                    selectedQuestions = cultureListQuestions.questionList.ToList();
+                    defaultCategorySprite = cultureImage;
                 }
                 break;
             case "Nature":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = NatureListQuestions.questionList.ToList();
+                    selectedQuestions = natureListQuestions.questionList.ToList();
+                    defaultCategorySprite = natureImage;
                 }
                 break;
             case "COVID-19":
                 if (selectedQuestions == null || selectedQuestions.Count == 0)
                 {
-                    selectedQuestions = CovidListQuestions.questionList.ToList();
+                    selectedQuestions = covidListQuestions.questionList.ToList();
+                    defaultCategorySprite = covidImage;
                 }
                 break;
 
@@ -166,7 +158,7 @@ public class GameManager : MonoBehaviour
 
             if(currentQuestion.Image == null)
             {
-                GuiManager.gui.QuestionImage.sprite = ReligionImage;
+                GuiManager.gui.QuestionImage.sprite = defaultCategorySprite;
             }
             else
             {
@@ -242,7 +234,7 @@ public class GameManager : MonoBehaviour
 
         UpdateGUIScore();
 
-        StartCoroutine(GotoNextQuestionWithDelay(NextQuestionDelay));
+        StartCoroutine(GotoNextQuestionWithDelay(nextQuestionDelay));
     }
 
     // send score values to gui
@@ -257,7 +249,7 @@ public class GameManager : MonoBehaviour
     // update score and reset timer
     private void LostDueToTimer()
     {
-        timer = TimeForAnswer;
+        timer = timeForAnswer;
         selectedQuestions.Remove(currentQuestion);
         int randomIndex = UnityEngine.Random.Range(0, SoundManager.sm.WrongAnswers.Length);
         SoundManager.sm.audioController.PlayOneShot(SoundManager.sm.WrongAnswers[randomIndex]);
@@ -285,7 +277,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         isQuestionAnswered = false;
-        timer = TimeForAnswer;
+        timer = timeForAnswer;
         GuiManager.gui.ResetButtonColors();
         SelectRandomQuestion();
     }
