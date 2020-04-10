@@ -63,4 +63,11 @@ public class DisplayStats : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void QuitApp()
+    {
+        Application.Quit();
+    }
+
+
 }
